@@ -1,0 +1,82 @@
+Devise will create some helpers to use inside your controllers and views. To set up a controller with user authentication, just add this before_filter:
+
+before_filter :authenticate_user!
+
+
+To verify if a user is signed in, use the following helper:
+
+user_signed_in?
+
+For the current signed-in user, this helper is available:
+
+current_user
+
+You can access the session for this scope:
+
+user_session
+
+Modules of controller
+ - Remembrable
+   - remember_me
+   - forget_me
+ - Url helpers
+   - which creates all the url helpers
+
+Controllers
+  - Registration
+  - Password
+  - Sessions
+  - Unlocks
+  - Omniauth_callbacks
+
+Modules of Models
+  - Confirmable
+    - confirm! (confirms the user)
+    - skip_confirmation!
+    - send_confirmation_instructions(generates confirmation token and sends)
+    - resend_confirmation_token(just sends pending confirmation token)
+
+  - Database Authenticable
+    - password=
+    - update_with_password(authenticates current_password, deletes it in params and updates attributes)
+    - update_without_password(update attributes and remove if there are password and password_confirmation)
+
+    - Encryptable
+      - password=
+      - valid_password?
+
+    - Lockable
+      - lock_access! (it locks and send unlock instructions if unlock is available)
+      - unlock_access!
+      - send_unlock_instructions
+
+    - Trackable
+      - update_trackable_fields
+
+    - Token Authenticable
+      - reset_authentication_token
+      - reset_authentication_token!
+      - ensure_authentication_token(calls reset_authentication_token if authentication token is blank?)
+
+    - Validatable
+      - applies all the validations
+
+    - TimeOutable
+      - it is used to check whether the session has been expired for user
+      - timed_out(calls remember_exists_and_not_expired?, return false if it is true, otherwise check timed_in and compares it with time passed)
+
+    - Rememberable
+      - remember_expired?
+      - remember_me
+      - forget_me
+
+    - Recoverable
+      - reset_password!
+      - send_reset_password_instructions
+      - reset_password_period_valid?
+
+    - Registrable
+      - new_with_session
+
+
+      An option to rejet password confirmation
